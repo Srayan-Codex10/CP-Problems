@@ -6,13 +6,11 @@ def isPalindromePermut(x: str) -> bool:
         for i in range(len(x)-1,-1,-1):
             rev = list(arr[::-1])
             if(arr[i] != rev[i]):
-                temp = arr[i-1]
-                arr[i-1] = arr[i]
-                arr[i] = temp
+                arr[i-1],arr[i] = arr[i], arr[i-1]
         if(arr == arr[::-1]):
-            print(True)
+            return True
         else:
-            print(False)
+            return False
 
 
 if __name__ == '__main__':
