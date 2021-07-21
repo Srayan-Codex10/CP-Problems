@@ -45,7 +45,7 @@ def blackjack_hand_greater_than(hand_1, hand_2):
         else:
             return False
 
-blackjack_hand_greater_than(['3', '9', '6', '3', 'A'], ['6'])
+print(blackjack_hand_greater_than(['3', '9', '6', '3', 'A'], ['6']))
 """
     Return True if hand_1 beats hand_2, and False otherwise.
     
@@ -63,10 +63,6 @@ blackjack_hand_greater_than(['3', '9', '6', '3', 'A'], ['6'])
     the total of ['A', 'A', '9', '3'] is 14.
     
     Examples:
-    >>> blackjack_hand_greater_than(['K'], ['3', '4'])
-    True
-    >>> blackjack_hand_greater_than(['K'], ['10'])
-    False
-    >>> blackjack_hand_greater_than(['K', 'K', '2'], ['3'])
-    False
+    blackjack_hand_greater_than(['3', '9', '6', '3', 'A'], ['6'])
+    >>> False
 """
