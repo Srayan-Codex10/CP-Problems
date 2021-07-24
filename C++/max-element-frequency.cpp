@@ -1,4 +1,6 @@
-#include<bits/stdc++.h>
+#include<vector>
+#include<iostream>
+#include<string>
 
 using namespace std;
 
@@ -6,7 +8,7 @@ int getMaxElemFrequency(vector<int> input) {
     vector<int> max_list;
     int max = 0;
     // iterates over elements in input vector , stores the maximum elements in max_list and returns size. Duplicates inlcuded
-    for(vector<int>::iterator itr = candles.begin(); itr!=candles.end();++itr) {
+    for(vector<int>::iterator itr = input.begin(); itr!= input.end();++itr) {
         if (*itr > max) {
             max = *itr;
             if(max_list.size() != 0) {
