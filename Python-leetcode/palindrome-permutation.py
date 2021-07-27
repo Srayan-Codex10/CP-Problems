@@ -1,4 +1,4 @@
-def isPalindromePermut(x: str) -> bool:
+""" def isPalindromePermut(x: str) -> bool:
     if(x == x[::-1]):  ##check with simple string reverse if string is already a palindrome
         print(True)
     else:               ##try to build a palindrome permutation if possible by comparing with reverse of string
@@ -19,4 +19,12 @@ if __name__ == '__main__':
     if(isPalindromePermut(input_str)):
         print("Palindrome permutation possible")
     else:
-        print("Palindrome permutation not possible")
+        print("Palindrome permutation not possible") """
+
+from collections import Counter
+def isPalindromePermute(words: list) -> bool:
+    word_freq = Counter(words)
+    
+    return sum([freq%2 for freq in word_freq.values()]) <= 1
+
+print(isPalindromePermute(str(input().lower())))
