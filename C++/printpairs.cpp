@@ -4,6 +4,7 @@
 using namespace std;
 
 void printPairs(int arr[], int n);
+void printSubArray(int input[], int n);
 
 int main()
 {
@@ -11,7 +12,24 @@ int main()
     int arr[] = {1, 2, 3, 4, 5, 6, 7};
     int n = sizeof(arr) / sizeof(int);
 
-    printPairs(arr, n);
+    // printPairs(arr, n);
+    printSubArray(arr, n);
+}
+
+void printSubArray(int input[], int n)
+{
+    for (int i = 0; i < n; ++i)
+    {
+        for (int j = i; j < n; ++j)
+        {
+            for (int k = i; k <= j; ++k) //cubic time, not efficient.
+            {
+                cout << input[k] << ", ";
+            }
+            cout << endl;
+        }
+        cout << endl;
+    }
 }
 
 void printPairs(int arr[], int n)
