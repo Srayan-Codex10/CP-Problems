@@ -11,10 +11,7 @@ def matchBrackets(symbols: str) -> bool:
             else:
                 if(pair_brackets[symbol_pair_stack.pop()] != bracket):
                     return False
-    if(len(symbol_pair_stack) == 0):
-        return True
-    else:
-        return False
+    return len(symbol_pair_stack) == 0
 
 
 if __name__ == "__main__":
