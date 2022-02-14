@@ -1,5 +1,5 @@
 import sys,traceback
-def isPalindrome(x:int) -> bool: 
+def isPalindrome(x: int) -> bool:
     ##alternate approach 
     # return str(x) == str(x)[::-1]
     rev_str = ''
