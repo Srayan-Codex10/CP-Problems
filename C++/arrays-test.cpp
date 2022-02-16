@@ -18,7 +18,7 @@ void testPrintArray(int *arr)
     }
 }
 
-// Brute Force
+// Brute Force O(n3)
 int subArraySum(int *arr, int n)
 {
     int largestSum = 0;
@@ -40,11 +40,37 @@ int subArraySum(int *arr, int n)
     return largestSum;
 }
 
+// Using prefix sums O(n2)
+int subArraySumPrefix(int *arr, int n)
+{
+
+    int largestSum = 0;
+    int prefix[n] = {0};
+    prefix[0] = arr[0];
+    for (int i = 1; i < n; i++)
+    {
+        prefix[i] = prefix[i - 1] + arr[i];
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = i; j < n; j++)
+        {
+            int subPrefixSum = i > 0 ? prefix[j] - prefix[i - 1] : prefix[j];
+            largestSum = max(subPrefixSum, largestSum);
+        }
+        cout << "Current Largest Sum: " << largestSum << endl;
+    }
+
+    return largestSum;
+}
+
 int main()
 {
     int arr[] = {1, 2, 3, 5, 8};
     int s = sizeof(arr) / sizeof(int);
 
+    cout << subArraySumPrefix(arr, s) << endl;
     cout << subArraySum(arr, s) << endl;
     /*  int marks[100] = {0}; //initialize //create
 
