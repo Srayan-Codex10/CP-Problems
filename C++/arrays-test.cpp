@@ -17,6 +17,24 @@ void testPrintArray(int *arr)
         cout << arr[i] << endl;
     }
 }
+// O(n)
+int kadaneSubArraySum(int *arr, int n)
+{
+    int currentSum = 0;
+    int maxSum = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        currentSum = currentSum + arr[i];
+        if (currentSum < 0)
+        {
+            currentSum = 0;
+        }
+        maxSum = max(maxSum, currentSum);
+    }
+
+    return maxSum;
+}
 
 // Brute Force O(n3)
 int subArraySum(int *arr, int n)
@@ -67,11 +85,12 @@ int subArraySumPrefix(int *arr, int n)
 
 int main()
 {
-    int arr[] = {1, 2, 3, 5, 8};
+    int arr[] = {-2, 3, 4, -1, 5, -12, 6, 1, 3};
     int s = sizeof(arr) / sizeof(int);
 
     cout << subArraySumPrefix(arr, s) << endl;
     cout << subArraySum(arr, s) << endl;
+    cout << kadaneSubArraySum(arr, s) << endl;
     /*  int marks[100] = {0}; //initialize //create
 
     int n;
