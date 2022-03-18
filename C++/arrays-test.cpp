@@ -21,16 +21,15 @@ void testPrintArray(int *arr)
 int kadaneSubArraySum(int *arr, int n)
 {
     int currentSum = 0;
-    int maxSum = 0;
-
+    int maxSum = INT_MIN;
     for (int i = 0; i < n; i++)
     {
         currentSum = currentSum + arr[i];
+        maxSum = max(maxSum, currentSum);
         if (currentSum < 0)
         {
             currentSum = 0;
         }
-        maxSum = max(maxSum, currentSum);
     }
 
     return maxSum;
@@ -85,11 +84,10 @@ int subArraySumPrefix(int *arr, int n)
 
 int main()
 {
-    int arr[] = {-2, 3, 4, -1, 5, -12, 6, 1, 3};
+    int arr[] = {-1, -2, -2};
     int s = sizeof(arr) / sizeof(int);
-
-    cout << subArraySumPrefix(arr, s) << endl;
-    cout << subArraySum(arr, s) << endl;
+    // cout << subArraySumPrefix(arr, s) << endl;
+    // cout << subArraySum(arr, s) << endl;
     cout << kadaneSubArraySum(arr, s) << endl;
     /*  int marks[100] = {0}; //initialize //create
 
