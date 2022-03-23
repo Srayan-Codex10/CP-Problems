@@ -9,18 +9,17 @@ void bubbleSort(vector<int> arr, int size)
     bool swapped = false;
     for (int i = 1; i <= size - 1; i++)
     {
+        swapped = false;
         for (int j = 0; j <= size - 1 - i; j++)
         {
 
             if (arr[j] > arr[j + 1])
             {
                 swap(arr[j], arr[j + 1]);
-                swapped = false;
-            } else {
                 swapped = true;
-            }
+            } 
         }
-        if(swapped) {
+        if(!swapped) {
             cout << "Array is sorted";
             break;
         }
