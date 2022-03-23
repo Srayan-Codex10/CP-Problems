@@ -4,6 +4,7 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
+#include <deque>
 using namespace std;
 
 void testPrintArray(int *arr)
@@ -17,8 +18,25 @@ void testPrintArray(int *arr)
         cout << arr[i] << endl;
     }
 }
+// O(n)
+int kadaneSubArraySum(int *arr, int n)
+{
+    int currentSum = 0;
+    int maxSum = INT_MIN;
+    for (int i = 0; i < n; i++)
+    {
+        currentSum = currentSum + arr[i];
+        maxSum = max(maxSum, currentSum);
+        if (currentSum < 0)
+        {
+            currentSum = 0;
+        }
+    }
 
-// Brute Force
+    return maxSum;
+}
+
+// Brute Force O(n3)
 int subArraySum(int *arr, int n)
 {
     int largestSum = 0;
@@ -40,12 +58,78 @@ int subArraySum(int *arr, int n)
     return largestSum;
 }
 
+// Using prefix sums O(n2)
+int subArraySumPrefix(int *arr, int n)
+{
+
+    int largestSum = 0;
+    int prefix[n] = {0};
+    prefix[0] = arr[0];
+    for (int i = 1; i < n; i++)
+    {
+        prefix[i] = prefix[i - 1] + arr[i];
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = i; j < n; j++)
+        {
+            int subPrefixSum = i > 0 ? prefix[j] - prefix[i - 1] : prefix[j];
+            largestSum = max(subPrefixSum, largestSum);
+        }
+        cout << "Current Largest Sum: " << largestSum << endl;
+    }
+
+    return largestSum;
+}
+
+// array rotate -- using deque
+void arrayRotate(vector<int> arr, int k)
+{
+    deque<int> dq(arr.begin(), arr.end());
+    for (int i = 0; i < k; i++)
+    {
+        const auto end = *(dq.end() - 1);
+        dq.pop_back();
+        dq.push_front(end);
+    }
+    vector<int> arr_rotated(dq.begin(), dq.end());
+    for (vector<int>::iterator it = arr_rotated.begin(); it != arr_rotated.end(); ++it)
+    {
+        cout << *it << " ";
+    }
+}
+
+// array rotate - O(n) but with high space complexity. 
+void rotate(vector<int> arr, int k)
+{
+    vector<int>::reverse_iterator rev_it;
+    vector<int> removed_el;
+    vector<int> rotated_arr;
+    for (int i = 0; i < k; i++)
+    {
+        removed_el.push_back(*(arr.end() - 1));
+        arr.pop_back();
+    }
+
+    for (rev_it = removed_el.rbegin(); rev_it != removed_el.rend(); rev_it++)
+    {
+        rotated_arr.push_back(*rev_it);
+    }
+    for_each(arr.begin(), arr.end(), [&rotated_arr](int &v)
+             { rotated_arr.push_back(v); });
+}
+
 int main()
 {
-    int arr[] = {1, 2, 3, 5, 8};
+    int arr[] = {1, 3, 5, 7, 9};
+    vector<int> arr_v = {1, 3, 5, 7, 9};
     int s = sizeof(arr) / sizeof(int);
+    // cout << subArraySumPrefix(arr, s) << endl;
+    // cout << subArraySum(arr, s) << endl;
+    // cout << kadaneSubArraySum(arr, s) << endl;
+    rotate(arr_v, 2);
 
-    cout << subArraySum(arr, s) << endl;
     /*  int marks[100] = {0}; //initialize //create
 
     int n;
