@@ -1,6 +1,6 @@
 /***
  * @author Srayan Ray
- * */
+ ***/
 #include <iostream>
 #include <algorithm>
 #include <vector>
@@ -100,7 +100,7 @@ void arrayRotate(vector<int> arr, int k)
     }
 }
 
-// array rotate - O(n) but with high space complexity. 
+// array rotate - O(n) but with high space complexity.
 void rotate(vector<int> arr, int k)
 {
     vector<int>::reverse_iterator rev_it;
