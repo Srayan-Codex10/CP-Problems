@@ -25,15 +25,15 @@ void countingSort(int *arr, int n, int max_range)
     }
 
     int arr_idx = 0;
+
     for (int k = 0; k <= max_range; k++)
     {
-        if (countArr[k] != 0)
+        int freq = countArr[k];
+        while (freq > 0)
         {
-            for (int v = 0; v < countArr[k]; v++)
-            {
-                arr[arr_idx] = k;
-                arr_idx++;
-            }
+            arr[arr_idx] = k;
+            freq--;
+            arr_idx++;
         }
     }
     for (int x = 0; x < n; x++)
@@ -45,7 +45,7 @@ void countingSort(int *arr, int n, int max_range)
 int main()
 {
 
-    int ar[] = {2, 3, 6, 1, 8, 10, 0};
+    int ar[] = {2, 3, 6, 6, 1, 10, 4};
     int size = sizeof(ar) / sizeof(int);
     int max_arr_el = maxArrayElement(ar, size);
     countingSort(ar, size, max_arr_el);
