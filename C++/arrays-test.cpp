@@ -7,6 +7,45 @@
 #include <deque>
 using namespace std;
 
+vector<int> subarraySum(int arr[], int n, long long s)
+{
+    // sub array with given sum [O(n)]
+    vector<int> subArray;
+    int sum = 0;
+    int curnt = 0;
+    int ahead = 0;
+    bool subArrayFound = false;
+
+    while (curnt < n)
+    {
+        sum = sum + arr[ahead];
+        if (sum > s)
+        {
+            curnt++;
+            ahead = curnt;
+            sum = 0;
+        }
+        else if (sum == s)
+        {
+            subArrayFound = true;
+            subArray.push_back(curnt + 1);
+            subArray.push_back(ahead + 1);
+            break;
+        }
+        else
+        {
+            ahead++;
+        }
+    }
+
+    if (!subArrayFound)
+    {
+        subArray.push_back(-1);
+        return subArray;
+    }
+    return subArray;
+}
+
 void testPrintArray(int *arr)
 {
     // cout << sizeof(arr) << endl; //prints size of pointer to array ; 8 bytes
@@ -122,7 +161,7 @@ void rotate(vector<int> arr, int k)
 
 int main()
 {
-    int arr[] = {1, 3, 5, 7, 9};
+    int arr[] = {1, 2, 3, 7, 9};
     vector<int> arr_v = {1, 3, 5, 7, 9};
     int s = sizeof(arr) / sizeof(int);
     // cout << subArraySumPrefix(arr, s) << endl;
