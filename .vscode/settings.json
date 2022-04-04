@@ -1,0 +1,15 @@
+{
+  "files.associations": {
+    "vector": "cpp",
+    "iostream": "cpp"
+  },
+  "[cpp]": {
+    "editor.wordBasedSuggestions": false,
+    "editor.suggest.insertMode": "replace",
+    "editor.semanticHighlighting.enabled": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.autoClosingBrackets": "always",
+    "editor.autoIndent": "advanced"
+  }
+}
