@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstring>
+#include <algorithm>
 #include <vector>
 using namespace std;
 // ['a','a','b','b']
@@ -99,6 +100,22 @@ void concatString(char *d, char *s)
     cout << strcat(d, s) << endl;
 }
 
+string removeDuplicates(string s)
+{
+    string stack;
+    size_t idx;
+    for (const char c : s)
+    {
+        idx = stack.find(c);
+        if (idx == std::string::npos)
+        {
+            stack.push_back(c);
+        }
+    }
+    sort(stack.begin(), stack.end());
+    return stack;
+}
+
 int main()
 {
     char a[100] = "always";
@@ -127,6 +144,10 @@ int main()
 
     vector<char> test = {'a', 'a', 'b', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c'};
     stringCompress(test);
+    cout << endl
+         << removeDuplicates(string("geeksforgeeks")) << endl; /* efgkors */
+    cout << removeDuplicates(string("aaaab")) << endl;         /* ab */
+    cout << removeDuplicates(string("ababababc")) << endl;     /* abc */
 
     return 0;
 }
