@@ -5,9 +5,10 @@ using namespace std;
 
 bool isPermutation(string A, string B)
 {
+    size_t idx;
     for (const char c : B)
     {
-        size_t idx = A.find(c);
+        idx = A.find(c);
         if (idx == std::string::npos)
         {
             return false;
