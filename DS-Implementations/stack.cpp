@@ -56,15 +56,20 @@ void printStack()
 int main()
 {
     top = NULL;
-    for (int i = 0; i < 5; i++)
+    int n;
+    int data;
+    cin >> n;
+
+    for (int i = 0; i < n; i++)
     {
-        push(i);
+        cin >> data;
+        push(data);
     }
     printStack();
 
     pop();
     pop();
-
+    push(10);
     printStack();
     return 0;
 }
