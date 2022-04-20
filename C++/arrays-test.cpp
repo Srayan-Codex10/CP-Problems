@@ -161,14 +161,14 @@ void rotate(vector<int> arr, int k)
 
 int main()
 {
-    int arr[] = {1, 2, 3, 7, 9};
+    int arr[] = {1, 2, 0, 7, 9};
     vector<int> arr_v = {1, 3, 5, 7, 9};
     int s = sizeof(arr) / sizeof(int);
     // cout << subArraySumPrefix(arr, s) << endl;
     // cout << subArraySum(arr, s) << endl;
     // cout << kadaneSubArraySum(arr, s) << endl;
     rotate(arr_v, 2);
-
+    subarraySum(arr, s, 0);
     /*  int marks[100] = {0}; //initialize //create
 
     int n;
