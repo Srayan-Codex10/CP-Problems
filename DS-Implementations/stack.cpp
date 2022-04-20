@@ -42,21 +42,29 @@ int pop()
     return popped;
 }
 
+void printStack()
+{
+    Node *iterator = top;
+    while (iterator != NULL)
+    {
+        cout << iterator->val << " ";
+        iterator = iterator->next;
+    }
+    cout << endl;
+}
+
 int main()
 {
-
     top = NULL;
-
     for (int i = 0; i < 5; i++)
     {
         push(i);
     }
+    printStack();
 
-    while (top != NULL)
-    {
-        cout << top->val << " ";
-        top = top->next;
-    }
+    pop();
+    pop();
 
+    printStack();
     return 0;
 }
