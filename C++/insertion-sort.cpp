@@ -24,7 +24,7 @@ void insertionSort(vector<int> &arr, int n)
 
 int main()
 {
-    vector<int> ar = {5, 4, 3, 2, 1};
+    vector<int> ar = {-2, 3, 4, -1, 5, -12, 6, 1, 3};
     int size = ar.size();
     insertionSort(ar, size);
 

@@ -3,7 +3,7 @@
 using namespace std;
 int binarySearch(vector<int> arr, int key, int start, int end)
 {
-    while (start <= end)
+    while (start <= end) // start <= end in case the key is present at same index as n-1
     {
         int mid = (start + end) / 2;
 
