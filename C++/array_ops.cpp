@@ -1,4 +1,6 @@
 #include <iostream>
+#include <fstream>
+#include <sstream>
 #define N 20
 
 using namespace std;
@@ -86,31 +88,54 @@ int add(int *arr, int &n, int data, int idx)
 }
 
 // Read from File
-void read_data(int *arr, int n)
+void read_data(int *arr, int &n)
 {
+    string line;
+    fstream file;
+    file.open("input.txt", ios::in);
+    if (file.is_open())
+    {
+        cout << "Reading Input from file" << endl;
+        while (getline(file, line))
+        {
+            cout << "Data: " << line;
+        }
+
+        stringstream ss(line);
+        int num;
+        int i = 0;
+        while (ss >> num)
+        {
+            arr[i] = num;
+            i++;
+        }
+        n = i - 1;
+        cout << endl
+             << "Count: " << n;
+    }
+
+    file.close();
 }
 
 int main()
 {
     int arr[N] = {0};
     int last = 0;
-
+    read_data(arr, last);
     // cout << "Array Size: " << (sizeof(arr) / sizeof(int)) << endl;
 
-    // Fill array
+    /* // Fill array
     for (int i = 0; i < 10; i++)
     {
         arr[i] = i + 1;
         last = i;
-    }
-    printArray(arr, last);
+    } */
     cout << endl;
-    cout << last << endl;
 
     push(arr, last, 23);
     printArray(arr, last);
     cout << endl
-         << last;
+         << "Count: " << last;
 
     add(arr, last, 43, 3);
     printArray(arr, last);
