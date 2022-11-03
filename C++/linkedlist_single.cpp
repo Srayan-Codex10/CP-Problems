@@ -82,6 +82,33 @@ Node *insertAfter(int pos, int data, Node *head)
     return head;
 }
 
+// insert before
+
+Node *insertBefore(int pos, int data, Node *head)
+{
+    if (head == NULL)
+    {
+        head = createNode(data);
+        return head;
+    }
+
+    if (pos == 1)
+    {
+        return insertNodeAtFront(head, data);
+    }
+
+    Node *newNode = createNode(data);
+    Node *temp = head;
+
+    for (int i = 1; i < pos - 1; i++)
+    {
+        temp = temp->next;
+    }
+    newNode->next = temp->next;
+    temp->next = newNode;
+    return head;
+}
+
 string readData()
 {
     string line;
@@ -120,7 +147,8 @@ int main()
     cin >> loc;
     cout << "Enter number: ";
     cin >> randomData;
-    insertAfter(loc, randomData, head);
+    // insertAfter(loc, randomData, head);
+    head = insertBefore(loc, randomData, head);
     printList(head);
     return 0;
 }
