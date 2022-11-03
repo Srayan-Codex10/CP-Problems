@@ -123,13 +123,6 @@ int main()
     int last = 0;
     read_data(arr, last);
     // cout << "Array Size: " << (sizeof(arr) / sizeof(int)) << endl;
-
-    /* // Fill array
-    for (int i = 0; i < 10; i++)
-    {
-        arr[i] = i + 1;
-        last = i;
-    } */
     cout << endl;
 
     push(arr, last, 23);

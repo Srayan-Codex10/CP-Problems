@@ -1,14 +1,16 @@
 #include <iostream>
 using namespace std;
 
-typedef struct node {
+typedef struct node
+{
     int data;
     node *next;
     node *prev;
 } Node;
-    Node *rear , *front;
-    
-Node* create_node(int val) {
+Node *rear, *front;
+
+Node *create_node(int val)
+{
     Node *link;
     link = (Node *)malloc(sizeof(Node));
     link->data = val;
@@ -17,15 +19,18 @@ Node* create_node(int val) {
     return link;
 }
 
-void insert_node(int x) {
+void insert_node(int x)
+{
     Node *temp = create_node(x);
-    if(rear == NULL  && front == NULL){
+    if (rear == NULL && front == NULL)
+    {
         front = temp;
         rear = temp;
         // temp->prev = front;
         // temp->next = rear;
     }
-    else {
+    else
+    {
         temp->prev = rear;
         rear->next = temp;
         rear = temp;
@@ -33,37 +38,43 @@ void insert_node(int x) {
     }
 }
 
-void print_list(Node* root) {
+void print_list(Node *root)
+{
     Node *temp;
     temp = root;
-    while(temp != NULL) {
+    while (temp != NULL)
+    {
         cout << temp->data << ' ';
         temp = temp->next;
     }
 }
 
-void reverse_print_list(Node* root) {
+void reverse_print_list(Node *root)
+{
     Node *temp;
     temp = root;
-    while(temp != NULL) {
+    while (temp != NULL)
+    {
         cout << temp->data << ' ';
         temp = temp->prev;
     }
 }
 
-int main() {
+int main()
+{
     rear = front = NULL;
     int data, size;
     cout << "Enter size of list: " << endl;
     cin >> size;
     cin.sync();
-    for(int i = 0; i<size; i++) {
+    for (int i = 0; i < size; i++)
+    {
 
-        cout << "Enter node value: " <<endl;
+        cout << "Enter node value: " << endl;
         cin >> data;
         insert_node(data);
     }
     cout << "LinkedList -> ";
-    // print_list(front);
-    // reverse_print_list(rear);
+    print_list(front);
+    reverse_print_list(rear);
 }
