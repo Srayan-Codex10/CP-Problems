@@ -8,7 +8,6 @@ typedef struct node
     int data;
     node *next;
 } Node;
-Node *head = NULL;
 
 Node *createNode(int data)
 {
@@ -30,25 +29,26 @@ void printList(Node *head)
         cout << temp->data << "\t";
         temp = temp->next;
     }
+    cout << endl;
 }
 
-void appendNewNode(int data)
+Node *appendNewNode(Node *head, int data)
 {
     if (head == NULL)
     {
         head = createNode(data);
-        return;
+        return head;
     }
     Node *temp = head;
     while (temp->next)
     {
         temp = temp->next;
     }
-    Node *newNode = createNode(data);
-    temp->next = newNode;
+    temp->next = createNode(data);
+    return head;
 }
 
-void insertNodeAtFront(int data)
+Node *insertNodeAtFront(Node *head, int data)
 {
     Node *newNode = createNode(data);
     if (head == NULL)
@@ -60,6 +60,26 @@ void insertNodeAtFront(int data)
         newNode->next = head;
         head = newNode;
     }
+    return head;
+}
+
+Node *insertAfter(int pos, int data, Node *head)
+{
+    if (head == NULL)
+    {
+        head = createNode(data);
+        return head;
+    }
+
+    Node *newNode = createNode(data);
+    Node *list_iter = head;
+    for (int i = 1; i < pos; i++)
+    {
+        list_iter = list_iter->next;
+    }
+    newNode->next = list_iter->next;
+    list_iter->next = newNode;
+    return head;
 }
 
 string readData()
@@ -78,6 +98,7 @@ string readData()
 
 int main()
 {
+    Node *head = NULL;
     string data = readData();
     int num;
     stringstream ss(data);
@@ -86,13 +107,20 @@ int main()
     {
         if (num % 2 == 0)
         {
-            appendNewNode(num);
+            head = appendNewNode(head, num);
         }
         else
         {
-            insertNodeAtFront(num);
+            head = insertNodeAtFront(head, num);
         }
     }
+    printList(head);
+    int loc, randomData;
+    cout << "Enter position: " << endl;
+    cin >> loc;
+    cout << "Enter number: ";
+    cin >> randomData;
+    insertAfter(loc, randomData, head);
     printList(head);
     return 0;
 }
