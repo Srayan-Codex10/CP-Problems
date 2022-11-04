@@ -82,8 +82,6 @@ Node *insertAfter(int pos, int data, Node *head)
     return head;
 }
 
-// insert before
-
 Node *insertBefore(int pos, int data, Node *head)
 {
     if (head == NULL)
@@ -106,6 +104,38 @@ Node *insertBefore(int pos, int data, Node *head)
     }
     newNode->next = temp->next;
     temp->next = newNode;
+    return head;
+}
+
+void pop(Node *head)
+{
+
+    if (head == NULL)
+    {
+        cout << "Empty List" << endl;
+        return;
+    }
+
+    Node *temp = head;
+    while (temp->next->next)
+    {
+        temp = temp->next;
+    }
+    Node *toDelete = temp->next;
+    free(toDelete);
+    temp->next = NULL;
+}
+
+Node *popFront(Node *head)
+{
+    if (head == NULL)
+    {
+        cout << "Empty List" << endl;
+        return NULL;
+    }
+    Node *toDelete = head;
+    head = head->next;
+    free(toDelete);
     return head;
 }
 
@@ -141,6 +171,7 @@ int main()
             head = insertNodeAtFront(head, num);
         }
     }
+
     printList(head);
     int loc, randomData;
     cout << "Enter position: " << endl;
@@ -148,7 +179,9 @@ int main()
     cout << "Enter number: ";
     cin >> randomData;
     // insertAfter(loc, randomData, head);
-    head = insertBefore(loc, randomData, head);
+    // head = insertBefore(loc, randomData, head);
     printList(head);
+    // pop(head);
+    // head = popFront(head);
     return 0;
 }
