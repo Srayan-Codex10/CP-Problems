@@ -20,7 +20,7 @@ Node *createNode(int data)
 void printList(Node *head)
 {
     Node *temp = head;
-    if (temp == NULL)
+    if (NULL == temp)
         return;
 
     cout << "List: \n";
@@ -34,7 +34,7 @@ void printList(Node *head)
 
 Node *appendNewNode(Node *head, int data)
 {
-    if (head == NULL)
+    if (NULL == head)
     {
         head = createNode(data);
         return head;
@@ -51,7 +51,7 @@ Node *appendNewNode(Node *head, int data)
 Node *insertNodeAtFront(Node *head, int data)
 {
     Node *newNode = createNode(data);
-    if (head == NULL)
+    if (NULL == head)
     {
         head = newNode;
     }
@@ -65,7 +65,7 @@ Node *insertNodeAtFront(Node *head, int data)
 
 Node *insertAfter(int pos, int data, Node *head)
 {
-    if (head == NULL)
+    if (NULL == head)
     {
         head = createNode(data);
         return head;
@@ -82,9 +82,26 @@ Node *insertAfter(int pos, int data, Node *head)
     return head;
 }
 
+Node *insertAfterNode(int data, Node *head, Node *loc)
+{
+    if (NULL == head)
+    {
+        head = createNode(data);
+        return head;
+    }
+
+    Node *newNode = createNode(data);
+    newNode->next = loc->next;
+    loc->next = newNode;
+    return head;
+}
+
+/**
+ * Insert before a node when Node address is not given
+ */
 Node *insertBefore(int pos, int data, Node *head)
 {
-    if (head == NULL)
+    if (NULL == head)
     {
         head = createNode(data);
         return head;
@@ -107,10 +124,31 @@ Node *insertBefore(int pos, int data, Node *head)
     return head;
 }
 
+/**
+ * Insert before a node when node address is given
+ */
+Node *insertBeforeNode(int data, Node *head, Node *loc)
+{
+    if (NULL == head)
+    {
+        head = createNode(data);
+        return head;
+    }
+    Node *iter = head;
+    while (iter->next != loc)
+    {
+        iter = iter->next;
+    }
+    Node *newNode = createNode(data);
+    newNode->next = loc;
+    iter->next = newNode;
+    return head;
+}
+
 void pop(Node *head)
 {
 
-    if (head == NULL)
+    if (NULL == head)
     {
         cout << "Empty List" << endl;
         return;
@@ -128,7 +166,7 @@ void pop(Node *head)
 
 Node *popFront(Node *head)
 {
-    if (head == NULL)
+    if (NULL == head)
     {
         cout << "Empty List" << endl;
         return NULL;
@@ -137,6 +175,40 @@ Node *popFront(Node *head)
     head = head->next;
     free(toDelete);
     return head;
+}
+
+Node *deleteNode(Node *head, Node *loc) {
+    if(NULL == head) {
+        cout << "Empty List" << endl;
+        return head;
+    }
+    Node *prev = head;
+    while(prev->next != loc) {
+        prev = prev->next;
+    }
+    prev->next = loc->next;
+    free(loc);
+    return head;
+}
+
+Node *getNode(int data, Node *head)
+{
+    Node *temp = head;
+    if (NULL == head)
+        return NULL;
+
+    while (temp)
+    {
+        if (data == temp->data)
+        {
+            return temp;
+        }
+        else
+        {
+            temp = temp->next;
+        }
+    }
+    return NULL;
 }
 
 string readData()
@@ -173,15 +245,11 @@ int main()
     }
 
     printList(head);
-    int loc, randomData;
-    cout << "Enter position: " << endl;
-    cin >> loc;
-    cout << "Enter number: ";
-    cin >> randomData;
-    // insertAfter(loc, randomData, head);
-    // head = insertBefore(loc, randomData, head);
+    insertBeforeNode(23, head, getNode(0, head));
+    insertAfterNode(12, head, getNode(1, head));
     printList(head);
-    // pop(head);
-    // head = popFront(head);
+    deleteNode(head, getNode(12, head));
+    deleteNode(head, getNode(23, head));
+    printList(head);
     return 0;
 }
